@@ -5,6 +5,21 @@ import moment from 'moment';
 
 const Messages = (props) => {
   const { messages, otherUser, userId } = props;
+  messages.sort((a,b) => {
+    const time1 = moment(a.createdAt);
+    const time2 = moment(b.createdAt);
+    if(time1.isBefore(time2)){
+      return -1;
+    }
+    else if(time1.isSame(time2)){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  }); 
+  console.log(moment(messages[0].createdAt).isBefore(moment(messages[1].createdAt)));
+
   return (
     <Box>
       {messages.map((message) => {
