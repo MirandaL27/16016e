@@ -18,7 +18,6 @@ const Messages = (props) => {
       return 1;
     }
   }); 
-  console.log(moment(messages[0].createdAt).isBefore(moment(messages[1].createdAt)));
 
   return (
     <Box>
