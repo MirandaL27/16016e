@@ -62,9 +62,9 @@ const Home = ({ user, logout }) => {
     });
   };
 
-  const postMessage = (body) => {
+  const postMessage = async (body) => {
     try {
-      const data = saveMessage(body);
+      const data = await saveMessage(body);
 
       if (!body.conversationId) {
         addNewConvo(body.recipientId, data.message);
@@ -111,7 +111,8 @@ const Home = ({ user, logout }) => {
           convo.latestMessageText = message.text;
         }
       });
-      setConversations(conversations);
+      console.log(conversations);
+      setConversations([...conversations]);
     },
     [setConversations, conversations],
   );
@@ -182,6 +183,7 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
+        console.log("getting convo data from server = ",data);
         setConversations(data);
       } catch (error) {
         console.error(error);
