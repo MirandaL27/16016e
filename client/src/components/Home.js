@@ -111,7 +111,6 @@ const Home = ({ user, logout }) => {
           convo.latestMessageText = message.text;
         }
       });
-      console.log(conversations);
       setConversations([...conversations]);
     },
     [setConversations, conversations],
