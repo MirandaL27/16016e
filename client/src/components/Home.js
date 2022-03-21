@@ -80,14 +80,17 @@ const Home = ({ user, logout }) => {
 
   const addNewConvo = useCallback(
     (recipientId, message) => {
-      conversations.forEach((convo) => {
-        if (convo.otherUser.id === recipientId) {
-          convo.messages.push(message);
-          convo.latestMessageText = message.text;
-          convo.id = message.conversationId;
-        }
-      });
-      setConversations([...conversations]);
+      setConversations((prev) =>
+        conversations.map((convo) => {
+          if (convo.otherUser.id === recipientId) {
+            convo.messages.push(message);
+            convo.latestMessageText = message.text;
+            convo.id = message.conversationId;
+          }
+          return convo;
+        })
+      )
+
     },
     [setConversations, conversations],
   );
@@ -104,14 +107,15 @@ const Home = ({ user, logout }) => {
         newConvo.latestMessageText = message.text;
         setConversations((prev) => [newConvo, ...prev]);
       }
-
-      conversations.forEach((convo) => {
-        if (convo.id === message.conversationId) {
-          convo.messages.push(message);
-          convo.latestMessageText = message.text;
-        }
-      });
-      setConversations([...conversations]);
+      setConversations((prev) =>
+        conversations.map((convo) => {
+          if (convo.id === message.conversationId) {
+            convo.messages.push(message);
+            convo.latestMessageText = message.text;
+          }
+          return convo;
+        })
+      )
     },
     [setConversations, conversations],
   );
@@ -182,7 +186,9 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         const { data } = await axios.get("/api/conversations");
-        console.log("getting convo data from server = ",data);
+        data.forEach((convo) => {
+          convo.messages.reverse();
+        })
         setConversations(data);
       } catch (error) {
         console.error(error);
