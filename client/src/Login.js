@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import image from '../src/assets/bg-img.png';
+import svg from '../src/assets/bubble.svg';
 import {
   Grid,
   Box,
@@ -7,10 +10,73 @@ import {
   Button,
   FormControl,
   TextField,
+  FormHelperText,
 } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex"
+  },
+  boxImage: {
+    backgroundImage: `url(${image})`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    width: '35%',
+    display: 'flex',
+    alignItems: "flex-end",
+    justifyContent: 'center'
+  },
+  boxText: {
+    width: '60%'
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: "bold"
+  },
+  textBox: {
+    borderStyle: 'none',
+    outline: 'none',
+    border: '2px solid grey'
+  },
+  greyFont: {
+    color: 'grey',
+    fontSize: 25
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  createAccountButton: {
+    padding: '15px',
+    boxShadow: '0px 8px 10px rgb(230, 238, 250), -1px 1px 5px rgb(230, 238, 250), 1px 1px 5px rgb(230, 238, 250);',
+    borderRadius: '5px',
+    color: 'rgb(52, 125, 235)'
+  },
+  submitButton: {
+    color: 'white',
+    backgroundColor: 'rgb(52, 125, 235)'
+  },
+  bubbleBox: {
+    color: 'white',
+    textAlign: 'center',
+    height: '60%',
+  },
+  vertCenterBox: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: '60%',
+    width: '100%'
+  },
+  topButtonBox:{
+    display:'flex',
+    justifyContent: 'flex-end'
+  }
+}));
 
 const Login = ({ user, login }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -27,42 +93,57 @@ const Login = ({ user, login }) => {
   }, [user, history]);
 
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Link href="/register" to="/register">
-            <Button>Register</Button>
+    <Grid container className={classes.root}>
+      <Box className={classes.boxImage}>
+        <Box className={classes.bubbleBox}>
+          <img alt="" src={svg} />
+          <Typography>Converse with anyone</Typography>
+          <Typography>with any language</Typography>
+        </Box>
+      </Box>
+      <Grid container justifyContent='center' className={classes.boxText}>
+        <Grid container className={classes.topButtonBox}>
+          <Typography>Don't have an account?</Typography>
+          <Link href="/register" to="/register" className={classes.link}>
+            <Button className={classes.createAccountButton}>Create Account</Button>
           </Link>
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
+        <Box>
+          <Box container className={classes.vertCenterBox}>
+            <Grid container item>
+              <Typography className={classes.title}>Welcome Back!</Typography>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+            <form onSubmit={handleLogin}>
+              <Grid>
+                <Grid>
+                  <FormControl margin="normal" required >
+                    <TextField
+                      aria-label="Username"
+                      label="Username"
+                      name="username"
+                      type="text"
+                    />
+                  </FormControl>
+                </Grid>
+                <FormControl margin="normal" required>
+                  <TextField
+                    label="Password"
+                    aria-label="Password"
+                    type="password"
+                    name="password"
+                  />
+                </FormControl>
+                <Grid>
+                  <Button className={classes.submitButton} type="submit" variant="contained" size="large">
+                    Login
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Box>
+        </Box>
+      </Grid>
+
     </Grid>
   );
 };
