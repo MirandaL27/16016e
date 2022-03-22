@@ -87,7 +87,8 @@ const Home = ({ user, logout }) => {
             convo.latestMessageText = message.text;
             convo.id = message.conversationId;
           }
-          return convo;
+          const convoCopy = { ...convo, messages: [ ...convo.messages ] };
+          return convoCopy;
         })
       )
 
@@ -113,7 +114,8 @@ const Home = ({ user, logout }) => {
             convo.messages.push(message);
             convo.latestMessageText = message.text;
           }
-          return convo;
+          const convoCopy = { ...convo, messages: [ ...convo.messages ] };
+          return convoCopy;
         })
       )
     },
