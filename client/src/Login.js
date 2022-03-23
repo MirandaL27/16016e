@@ -10,7 +10,6 @@ import {
   Button,
   FormControl,
   TextField,
-  FormHelperText,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: 40,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginBottom: '30px'
   },
   textBox: {
     borderStyle: 'none',
@@ -40,20 +40,22 @@ const useStyles = makeStyles((theme) => ({
   },
   greyFont: {
     color: 'grey',
-    fontSize: 25
+    fontSize: 15,
+    padding: '15px'
   },
   link: {
     textDecoration: 'none'
   },
   createAccountButton: {
-    padding: '15px',
+    padding: '15px 30px 15px 30px',
     boxShadow: '0px 8px 10px rgb(230, 238, 250), -1px 1px 5px rgb(230, 238, 250), 1px 1px 5px rgb(230, 238, 250);',
     borderRadius: '5px',
     color: 'rgb(52, 125, 235)'
   },
   submitButton: {
     color: 'white',
-    backgroundColor: 'rgb(52, 125, 235)'
+    backgroundColor: 'rgb(52, 125, 235)',
+    padding: '15px 70px 15px 70px'
   },
   bubbleBox: {
     color: 'white',
@@ -62,15 +64,23 @@ const useStyles = makeStyles((theme) => ({
   },
   vertCenterBox: {
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
     height: '60%',
     width: '100%'
   },
-  topButtonBox:{
-    display:'flex',
-    justifyContent: 'flex-end'
+  topButtonBox: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height: '15%'
+  },
+  image: {
+    marginBottom: '25px'
+  },
+  whiteFont: {
+    fontSize: 25
+  },
+  textField: {
+    paddingBottom: '40px'
   }
 }));
 
@@ -96,28 +106,28 @@ const Login = ({ user, login }) => {
     <Grid container className={classes.root}>
       <Box className={classes.boxImage}>
         <Box className={classes.bubbleBox}>
-          <img alt="" src={svg} />
-          <Typography>Converse with anyone</Typography>
-          <Typography>with any language</Typography>
+          <img alt="" src={svg} className={classes.image} />
+          <Typography className={classes.whiteFont}>Converse with anyone</Typography>
+          <Typography className={classes.whiteFont}>with any language</Typography>
         </Box>
       </Box>
       <Grid container justifyContent='center' className={classes.boxText}>
-        <Grid container className={classes.topButtonBox}>
-          <Typography>Don't have an account?</Typography>
+        <Grid container alignItems='center' className={classes.topButtonBox}>
+          <Typography className={classes.greyFont}>Don't have an account?</Typography>
           <Link href="/register" to="/register" className={classes.link}>
             <Button className={classes.createAccountButton}>Create Account</Button>
           </Link>
         </Grid>
-        <Box>
+        <Box width='70%' height="60%">
           <Box container className={classes.vertCenterBox}>
             <Grid container item>
               <Typography className={classes.title}>Welcome Back!</Typography>
             </Grid>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} width="100%">
               <Grid>
-                <Grid>
-                  <FormControl margin="normal" required >
-                    <TextField
+                <Grid className={classes.textField}>
+                  <FormControl fullWidth margin="normal" >
+                    <TextField fullWidth
                       aria-label="Username"
                       label="Username"
                       name="username"
@@ -125,15 +135,17 @@ const Login = ({ user, login }) => {
                     />
                   </FormControl>
                 </Grid>
-                <FormControl margin="normal" required>
-                  <TextField
-                    label="Password"
-                    aria-label="Password"
-                    type="password"
-                    name="password"
-                  />
-                </FormControl>
-                <Grid>
+                <Grid className={classes.textField}>
+                  <FormControl margin="normal" fullWidth required >
+                    <TextField fullWidth
+                      label="Password"
+                      aria-label="Password"
+                      type="password"
+                      name="password"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid container justifyContent='center'>
                   <Button className={classes.submitButton} type="submit" variant="contained" size="large">
                     Login
                   </Button>
