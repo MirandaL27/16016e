@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Route, Switch, withRouter } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import Signup from "./Signup.js";
 import Login from "./Login.js";
 import { SnackbarError, Home } from "./components";
 import { SocketContext, socket } from "./context/socket";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex"
+  },
+  boxText: {
+    width: '60%'
+  },
+  vertCenterBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '60%',
+    width: '100%'
+  },
+  textField: {
+    paddingBottom: '30px'
+  }
+}));
 
 const Routes = (props) => {
   const [user, setUser] = useState({
@@ -99,11 +119,11 @@ const Routes = (props) => {
       <Switch>
         <Route
           path="/login"
-          render={() => <Login user={user} login={login} />}
+          render={() => <Login user={user} login={login} useStyles = {useStyles}/>}
         />
         <Route
           path="/register"
-          render={() => <Signup user={user} register={register} />}
+          render={() => <Signup user={user} register={register} useStyles={useStyles}/>}
         />
         <Route
           exact
