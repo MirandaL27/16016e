@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
     whiteFont: {
       fontSize: 26,
+      '@media (max-width:780px)':{
+        fontSize: 18
+      },
       fontWeight: "400px",
       lineHeight: '40px'
     },

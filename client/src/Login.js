@@ -17,7 +17,7 @@ import FormTitle from './components/FormTitle';
 
 const loginStyles = makeStyles((theme) => ({
   padding1:{
-    paddingBottom: '54px'
+    paddingBottom: '54px',
   },
   padding2: {
     paddingBottom: '60px'
@@ -54,7 +54,7 @@ const Login = ({ user, login, useStyles}) => {
             <form onSubmit={handleLogin} width="100%">
               <Grid>
                 <Grid className={loginClasses.padding1}>
-                  <FormControl fullWidth margin="normal" >
+                  <FormControl fullWidth margin="normal">
                     <TextField fullWidth
                       aria-label="Username"
                       label="Username"
@@ -64,8 +64,8 @@ const Login = ({ user, login, useStyles}) => {
                   </FormControl>
                 </Grid>
                 <Grid className={loginClasses.padding2}>
-                  <FormControl margin="normal" fullWidth required >
-                    <TextField fullWidth
+                  <FormControl margin="normal" fullWidth required>
+                    <TextField fullWidth 
                       label="Password"
                       aria-label="Password"
                       type="password"

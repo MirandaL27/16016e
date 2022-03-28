@@ -5,9 +5,13 @@ import {
     Typography
   } from '@material-ui/core';
 
+
   const useStyles = makeStyles((theme) => ({
     title: {
-      fontSize: 26,
+      fontSize: '26px',
+      '@media (max-width:780px)':{
+        fontSize: '15px'
+      },
       fontWeight: "600",
       marginBottom: '49px',
       height: '40px',
