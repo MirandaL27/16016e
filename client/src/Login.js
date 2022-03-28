@@ -4,6 +4,7 @@ import Banner from './components/Banner';
 import FormHeader from './components/FormHeader';
 import FormButton from './components/FormButton';
 import { makeStyles } from '@material-ui/core/styles';
+// import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   Grid,
   Box,
@@ -22,6 +23,7 @@ const loginStyles = makeStyles((theme) => ({
     paddingBottom: '60px'
   }
 }));
+
 
 const Login = ({ user, login, useStyles}) => {
   const history = useHistory();
