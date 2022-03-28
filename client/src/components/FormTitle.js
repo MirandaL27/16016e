@@ -12,6 +12,9 @@ import {
       '@media (max-width:780px)':{
         fontSize: '15px'
       },
+      '@media (max-width:300px)': {
+        fontSize: '12px'
+      },
       fontWeight: "600",
       marginBottom: '49px',
       height: '40px',

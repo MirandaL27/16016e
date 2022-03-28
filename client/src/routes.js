@@ -105,6 +105,11 @@ const Routes = (props) => {
     },
     textField: {
       paddingBottom: '30px'
+    },
+    formFontSize: {
+      '@media (max-width:300px)': {
+        fontSize: '10px'
+      }
     }
   }));
 

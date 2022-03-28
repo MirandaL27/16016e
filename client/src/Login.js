@@ -60,6 +60,11 @@ const Login = ({ user, login, useStyles}) => {
                       label="Username"
                       name="username"
                       type="text"
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                   </FormControl>
                 </Grid>
@@ -77,6 +82,11 @@ const Login = ({ user, login, useStyles}) => {
                          </InputAdornment>
                         )
                        }}
+                       InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                   </FormControl>
                 </Grid>

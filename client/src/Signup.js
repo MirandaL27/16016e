@@ -56,6 +56,11 @@ const Signup = ({ user, register, useStyles}) => {
                       name="username"
                       type="text"
                       required
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                   </FormControl>
                 </Grid>
@@ -67,6 +72,11 @@ const Signup = ({ user, register, useStyles}) => {
                       type="email"
                       name="email"
                       required
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                   </FormControl>
                 </Grid>
@@ -79,6 +89,11 @@ const Signup = ({ user, register, useStyles}) => {
                       inputProps={{ minLength: 6 }}
                       name="password"
                       required
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                     <FormHelperText>
                       {formErrorMessage.confirmPassword}
@@ -94,6 +109,11 @@ const Signup = ({ user, register, useStyles}) => {
                       inputProps={{ minLength: 6 }}
                       name="confirmPassword"
                       required
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
                     />
                     <FormHelperText>
                       {formErrorMessage.confirmPassword}
