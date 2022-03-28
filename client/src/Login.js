@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Banner from './components/Banner';
 import FormHeader from './components/FormHeader';
 import FormButton from './components/FormButton';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Box,
@@ -13,11 +14,19 @@ import {
 } from '@material-ui/core';
 import FormTitle from './components/FormTitle';
 
+const loginStyles = makeStyles((theme) => ({
+  padding1:{
+    paddingBottom: '54px'
+  },
+  padding2: {
+    paddingBottom: '60px'
+  }
+}));
 
 const Login = ({ user, login, useStyles}) => {
   const history = useHistory();
   const classes = useStyles();
-
+  const loginClasses = loginStyles();
   const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -42,7 +51,7 @@ const Login = ({ user, login, useStyles}) => {
             <FormTitle titleText='Welcome back!'/>
             <form onSubmit={handleLogin} width="100%">
               <Grid>
-                <Grid className={classes.textField}>
+                <Grid className={loginClasses.padding1}>
                   <FormControl fullWidth margin="normal" >
                     <TextField fullWidth
                       aria-label="Username"
@@ -52,7 +61,7 @@ const Login = ({ user, login, useStyles}) => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid className={classes.textField}>
+                <Grid className={loginClasses.padding2}>
                   <FormControl margin="normal" fullWidth required >
                     <TextField fullWidth
                       label="Password"
