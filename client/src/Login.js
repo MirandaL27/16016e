@@ -37,7 +37,7 @@ const Login = ({ user, login, useStyles}) => {
       <Banner />
       <Grid container justifyContent='center' className={classes.boxText}>
         <FormHeader question="Don't have an account?" btnText='Create account' link='/register'/>
-        <Box width='70%' height="60%">
+        <Box width='75.7%' height="63.4%">
           <Box container className={classes.vertCenterBox}>
             <FormTitle titleText='Welcome back!'/>
             <form onSubmit={handleLogin} width="100%">

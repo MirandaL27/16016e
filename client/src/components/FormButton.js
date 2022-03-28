@@ -8,9 +8,12 @@ import {
 const useStyles = makeStyles((theme) => ({
     submitButton: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 16,
+      fontWeight: "700",
+      lineHeight: '24px',
       backgroundColor: 'rgb(58, 141, 255)',
-      padding: '20px 70px 20px 70px'
+      padding: '18px 58px 14px 58px',
+      borderRadius: '3px',
     }
   }));
 

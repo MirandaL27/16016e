@@ -9,7 +9,7 @@ import {
     title: {
       fontSize: 26,
       fontWeight: "600",
-      marginBottom: '33px',
+      marginBottom: '49px',
       height: '40px',
       lineHeight: '40px'
     }
