@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Banner from './components/Banner';
 import FormHeader from './components/FormHeader';
 import FormButton from './components/FormButton';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Box,
@@ -12,10 +13,16 @@ import {
 } from '@material-ui/core';
 import FormTitle from './components/FormTitle';
 
+const signUpStyles = makeStyles((theme) => ({
+  padding1:{
+    paddingBottom: '40px',
+  }
+}));
 
 const Signup = ({ user, register, useStyles}) => {
   const history = useHistory();
   const classes = useStyles();
+  const signUpClasses = signUpStyles();
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -43,7 +50,7 @@ const Signup = ({ user, register, useStyles}) => {
       <Banner />
       <Grid container justifyContent="center" className={classes.boxText}>
         <FormHeader question="Already have an account?" btnText='Login' link='/login'/>
-        <Box width='70%' height="60%">
+        <Box width='75.7%' height="63.4%">
           <Box container className={classes.vertCenterBox}>
             <FormTitle titleText='Create an account.'/>
             <form onSubmit={handleRegister}>
@@ -100,7 +107,7 @@ const Signup = ({ user, register, useStyles}) => {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid className={classes.textField}>
+                <Grid className={signUpClasses.padding1}>
                   <FormControl error={!!formErrorMessage.confirmPassword} fullWidth>
                     <TextField fullWidth
                       label="Confirm Password"

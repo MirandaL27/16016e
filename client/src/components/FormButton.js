@@ -12,8 +12,13 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: "700",
       lineHeight: '24px',
       backgroundColor: 'rgb(58, 141, 255)',
-      padding: '18px 58px 14px 58px',
       borderRadius: '3px',
+    },
+    padding1: {
+      padding: '18px 58px 14px 58px'
+    },
+    padding2 : {
+      padding: '18px 53px 14px 54px'
     }
   }));
 
@@ -21,7 +26,7 @@ const FormButton = ({btnText}) => {
     const classes = useStyles();
     return (
         <Grid container justifyContent='center'>
-            <Button className={classes.submitButton} type="submit" variant="contained" size="large">
+            <Button className={`${classes.submitButton} ${(btnText.includes("Create")? classes.padding2 : classes.padding1)}`} type="submit" variant="contained" size="large">
                 {btnText}
             </Button>
         </Grid>

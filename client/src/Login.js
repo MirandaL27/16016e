@@ -4,7 +4,6 @@ import Banner from './components/Banner';
 import FormHeader from './components/FormHeader';
 import FormButton from './components/FormButton';
 import { makeStyles } from '@material-ui/core/styles';
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   Grid,
   Box,

@@ -16,9 +16,14 @@ import {
         fontSize: '12px'
       },
       fontWeight: "600",
-      marginBottom: '49px',
       height: '40px',
       lineHeight: '40px'
+    },
+    margin1: {
+      marginBottom: '49px'
+    },
+    margin2: {
+      marginBottom: '28px',
     }
   }));
 
@@ -26,7 +31,7 @@ const FormTitle = ({titleText}) => {
     const classes = useStyles();
     return (
         <Grid container item>
-            <Typography className={classes.title}>{titleText}</Typography>
+            <Typography className={`${classes.title} ${(titleText.includes('Create')? classes.margin2: classes.margin1)}`}>{titleText}</Typography>
         </Grid>
     );
 }

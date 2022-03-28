@@ -34,13 +34,18 @@ import {
       '@media (max-width: 300px)': {
         marginRight: '15px'
       },
-      padding: '16px 32px 19px 34px',
       boxShadow: '0px 2px 12px rgba(74, 106, 149, 0.2)',
       borderRadius: '5px',
       color: 'rgb(58, 141, 255)',
       fontSize: 14,
       fontWeight: "600",
       lineHeight: '19px'
+    },
+    buttonPadding1: {
+      padding: '16px 32px 19px 34px'
+    },
+    buttonPadding2: {
+      padding: '16px 52px 19px 52px'
     },
     topButtonBox: {
       display: 'flex',
@@ -55,7 +60,7 @@ import {
       <Grid container alignItems='center' className={classes.topButtonBox}>
         <Typography className={classes.greyFont}>{question}</Typography>
         <Link href={link} to={link} className={classes.link}>
-          <Button className={classes.createAccountButton}>{btnText}</Button>
+          <Button className={`${classes.createAccountButton} ${(btnText.includes("Login")? classes.buttonPadding2 : classes.buttonPadding1)}`}>{btnText}</Button>
         </Link>
       </Grid>
       );
