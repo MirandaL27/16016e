@@ -7,9 +7,11 @@ import {
 
   const useStyles = makeStyles((theme) => ({
     title: {
-      fontSize: 30,
-      fontWeight: "bold",
-      marginBottom: '30px'
+      fontSize: 26,
+      fontWeight: "600",
+      marginBottom: '33px',
+      height: '40px',
+      lineHeight: '40px'
     }
   }));
 

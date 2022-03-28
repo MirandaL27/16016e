@@ -9,10 +9,10 @@ import {
   
 const useStyles = makeStyles((theme) => ({
     boxImage: {
-        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.80), rgba(121, 168, 242, 0.80)), url(${image})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(58, 141, 255, 0.85), rgba(134, 185, 255, 0.85)), url(${image})`,
         backgroundSize: 'cover',
         height: '100vh',
-        width: '35%',
+        width: '41%',
         display: 'flex',
         alignItems: "flex-end",
         justifyContent: 'center'
@@ -20,13 +20,15 @@ const useStyles = makeStyles((theme) => ({
     bubbleBox: {
       color: 'white',
       textAlign: 'center',
-      height: '60%',
+      height: '62%',
     },
     image: {
-      marginBottom: '25px'
+      marginBottom: '39px'
     },
     whiteFont: {
-      fontSize: 25
+      fontSize: 26,
+      fontWeight: "400px",
+      lineHeight: '40px'
     },
   }));
 

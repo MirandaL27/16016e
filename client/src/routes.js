@@ -9,23 +9,6 @@ import Login from "./Login.js";
 import { SnackbarError, Home } from "./components";
 import { SocketContext, socket } from "./context/socket";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex"
-  },
-  boxText: {
-    width: '60%'
-  },
-  vertCenterBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '60%',
-    width: '100%'
-  },
-  textField: {
-    paddingBottom: '30px'
-  }
-}));
 
 const Routes = (props) => {
   const [user, setUser] = useState({
@@ -107,6 +90,24 @@ const Routes = (props) => {
     return <div>Loading...</div>;
   }
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex"
+    },
+    boxText: {
+      width: '59%'
+    },
+    vertCenterBox: {
+      display: 'flex',
+      flexDirection: 'column',
+      height: '60%',
+      width: '100%'
+    },
+    textField: {
+      paddingBottom: '30px'
+    }
+  }));
+
   return (
     <SocketContext.Provider value={socket}>
       {snackBarOpen && (
@@ -132,7 +133,7 @@ const Routes = (props) => {
             user?.id ? (
               <Home user={user} logout={logout} />
             ) : (
-              <Signup user={user} register={register} />
+              <Signup user={user} register={register} useStyles={useStyles}/>
             )
           }
         />
