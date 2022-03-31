@@ -1,17 +1,33 @@
 import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Banner from './components/Banner';
+import FormHeader from './components/FormHeader';
+import FormButton from './components/FormButton';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Box,
   Typography,
-  Button,
   FormControl,
   TextField,
+  InputAdornment
 } from '@material-ui/core';
+import FormTitle from './components/FormTitle';
+import { authTheme } from './themes/auth-theme';
+const loginStyles = makeStyles((theme) => ({
+  padding1:{
+    paddingBottom: '54px',
+  },
+  padding2: {
+    paddingBottom: '60px'
+  }
+}));
 
-const Login = ({ user, login }) => {
+
+const Login = ({ user, login}) => {
   const history = useHistory();
-
+  const classes = authTheme();
+  const loginClasses = loginStyles();
   const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -27,42 +43,59 @@ const Login = ({ user, login }) => {
   }, [user, history]);
 
   return (
-    <Grid container justifyContent="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Link href="/register" to="/register">
-            <Button>Register</Button>
-          </Link>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+    <Grid container className={classes.root}>
+      <Banner />
+      <Grid container justifyContent='center' className={classes.boxText}>
+        <FormHeader question="Don't have an account?" btnText='Create account' link='/register'/>
+        <Box width='75.7%' height="63.4%">
+          <Box container className={classes.vertCenterBox}>
+            <FormTitle titleText='Welcome back!'/>
+            <form onSubmit={handleLogin} width="100%">
+              <Grid>
+                <Grid className={loginClasses.padding1}>
+                  <FormControl fullWidth margin="normal">
+                    <TextField fullWidth
+                      aria-label="Username"
+                      label="Username"
+                      name="username"
+                      type="text"
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid className={loginClasses.padding2}>
+                  <FormControl margin="normal" fullWidth required>
+                    <TextField fullWidth 
+                      label="Password"
+                      aria-label="Password"
+                      type="password"
+                      name="password"
+                      InputProps={{
+                        endAdornment: (
+                         <InputAdornment position="end" style={{color: 'rgb(58, 141, 255)'}}>
+                           <Typography>Forgot?</Typography>
+                         </InputAdornment>
+                        )
+                       }}
+                       InputLabelProps={{
+                        classes: {
+                          root: classes.formFontSize,
+                        }
+                      }}
+                    />
+                  </FormControl>
+                </Grid>
+                <FormButton btnText="Login"/>
+              </Grid>
+            </form>
+          </Box>
+        </Box>
+      </Grid>
+
     </Grid>
   );
 };
