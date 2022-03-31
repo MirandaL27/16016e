@@ -13,7 +13,7 @@ import {
   InputAdornment
 } from '@material-ui/core';
 import FormTitle from './components/FormTitle';
-
+import { authTheme } from './themes/auth-theme';
 const loginStyles = makeStyles((theme) => ({
   padding1:{
     paddingBottom: '54px',
@@ -24,9 +24,9 @@ const loginStyles = makeStyles((theme) => ({
 }));
 
 
-const Login = ({ user, login, useStyles}) => {
+const Login = ({ user, login}) => {
   const history = useHistory();
-  const classes = useStyles();
+  const classes = authTheme();
   const loginClasses = loginStyles();
   const handleLogin = async (event) => {
     event.preventDefault();

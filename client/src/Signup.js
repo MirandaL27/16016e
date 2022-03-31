@@ -12,6 +12,7 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import FormTitle from './components/FormTitle';
+import { authTheme } from './themes/auth-theme';
 
 const signUpStyles = makeStyles((theme) => ({
   padding1:{
@@ -19,10 +20,10 @@ const signUpStyles = makeStyles((theme) => ({
   }
 }));
 
-const Signup = ({ user, register, useStyles}) => {
+const Signup = ({ user, register}) => {
   const history = useHistory();
-  const classes = useStyles();
   const signUpClasses = signUpStyles();
+  const classes = authTheme();
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {
@@ -81,7 +82,7 @@ const Signup = ({ user, register, useStyles}) => {
                       required
                       InputLabelProps={{
                         classes: {
-                          root: classes.formFontSize,
+                          root: classes.formFontSize
                         }
                       }}
                     />
@@ -98,7 +99,7 @@ const Signup = ({ user, register, useStyles}) => {
                       required
                       InputLabelProps={{
                         classes: {
-                          root: classes.formFontSize,
+                          root: classes.formFontSize
                         }
                       }}
                     />

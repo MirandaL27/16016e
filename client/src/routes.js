@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 
 
 import Signup from "./Signup.js";
@@ -90,29 +89,6 @@ const Routes = (props) => {
     return <div>Loading...</div>;
   }
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex"
-    },
-    boxText: {
-      width: '59%'
-    },
-    vertCenterBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '60%',
-      width: '100%'
-    },
-    textField: {
-      paddingBottom: '30px'
-    },
-    formFontSize: {
-      '@media (max-width:300px)': {
-        fontSize: '10px'
-      }
-    }
-  }));
-
   return (
     <SocketContext.Provider value={socket}>
       {snackBarOpen && (
@@ -125,11 +101,11 @@ const Routes = (props) => {
       <Switch>
         <Route
           path="/login"
-          render={() => <Login user={user} login={login} useStyles = {useStyles}/>}
+          render={() => <Login user={user} login={login}/>}
         />
         <Route
           path="/register"
-          render={() => <Signup user={user} register={register} useStyles={useStyles}/>}
+          render={() => <Signup user={user} register={register}/>}
         />
         <Route
           exact
@@ -138,7 +114,7 @@ const Routes = (props) => {
             user?.id ? (
               <Home user={user} logout={logout} />
             ) : (
-              <Signup user={user} register={register} useStyles={useStyles}/>
+              <Signup user={user} register={register}/>
             )
           }
         />
