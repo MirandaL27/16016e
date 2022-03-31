@@ -20,7 +20,10 @@ import {
       lineHeight: '40px'
     },
     margin1: {
-      marginBottom: '49px'
+      marginBottom: '49px',
+      '@media (max-width: 500px)':{
+        marginBottom: '15px'
+    }
     },
     margin2: {
       marginBottom: '28px',
