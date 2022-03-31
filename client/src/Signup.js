@@ -17,6 +17,9 @@ import { authTheme } from './themes/auth-theme';
 const signUpStyles = makeStyles((theme) => ({
   padding1:{
     paddingBottom: '40px',
+    '@media (max-width: 500px)':{
+      paddingBottom: '20px'
+  }
   }
 }));
 

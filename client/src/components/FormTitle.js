@@ -24,6 +24,9 @@ import {
     },
     margin2: {
       marginBottom: '28px',
+      '@media (max-width: 500px)':{
+        marginBottom: '15px'
+    }
     }
   }));
 

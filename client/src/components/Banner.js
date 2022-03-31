@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         height: '100vh',
         width: '41%',
+        '@media (max-width:500px)': {
+          height: '30vh',
+          width: '100%'
+        },
         display: 'flex',
         alignItems: "flex-end",
         justifyContent: 'center'
@@ -21,9 +25,15 @@ const useStyles = makeStyles((theme) => ({
       color: 'white',
       textAlign: 'center',
       height: '62%',
+      '@media (max-width: 500px)': {
+        height: '90%'
+      }
     },
     image: {
-      marginBottom: '39px'
+      marginBottom: '39px',
+      '@media (max-width: 500px)':{
+        marginBottom: '20px'
+    }
     },
     whiteFont: {
       fontSize: 26,
