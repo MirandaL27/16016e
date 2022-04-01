@@ -35,22 +35,28 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formElements = form.elements;
-    const urlBase = "https://api.cloudinary.com/v1_1/demo/image/upload";
+    const urlBase = "https://api.cloudinary.com/v1_1/dhtthnneo/image/upload";
     const urlArray = [];
     if (formElements[1].files) {
       for (let i = 0; i < formElements[1].files.length; i++) {
         console.log(formElements[1].files[i]);
-        const imgData = {
-          file: formElements[1].files[i],
-          upload_preset: "docs_upload_example_us_preset"
-        };
+        const imgData = new FormData();
+          imgData.append("file", formElements[1].files[i]);
+          imgData.append("upload_preset", "xax3k85s");
+
         fetch(urlBase, {
           method: "POST",
           body: imgData
         })
-          .then((response) => {
-            console.log(response.url);
+          .then(response => {
+            return response.text();
+          })
+          .then(response => {
+            console.log(response);
             urlArray.push(response.url);
+          })
+          .catch(error => {
+            console.log(error);
           })
       }
     }
