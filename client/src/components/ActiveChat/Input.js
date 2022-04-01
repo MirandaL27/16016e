@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FormControl, FilledInput, Button } from '@material-ui/core';
+import { FormControl, FilledInput, Button, InputAdornment } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -71,17 +72,19 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           name="text"
           onChange={handleChange}
         />
+        <InputAdornment position="end">
         <Button
           variant="contained"
           component="label"
         >
-          Upload File
+          <AddToPhotosOutlinedIcon />
           <input
             type="file"
             multiple
             hidden
           />
         </Button>
+        </InputAdornment>
       </FormControl>
     </form>
   );
