@@ -14,6 +14,13 @@ const useStyles = makeStyles(() => ({
     borderRadius: 8,
     marginBottom: 20,
   },
+  uploadButton: {
+    border: "none",
+    boxShadow: "none",
+    padding: 'none',
+    backgroundColor: 'transparent',
+    color: 'grey'
+  }
 }));
 
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
@@ -30,8 +37,8 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     const formElements = form.elements;
     const urlBase = "https://api.cloudinary.com/v1_1/demo/image/upload";
     const urlArray = [];
-    if(formElements[1].files){
-      for(let i=0; i < formElements[1].files.length;i++){
+    if (formElements[1].files) {
+      for (let i = 0; i < formElements[1].files.length; i++) {
         console.log(formElements[1].files[i]);
         const imgData = {
           file: formElements[1].files[i],
@@ -41,13 +48,13 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           method: "POST",
           body: imgData
         })
-        .then((response) => {
-          console.log(response.url);
-          urlArray.push(response.url);
-        })
+          .then((response) => {
+            console.log(response.url);
+            urlArray.push(response.url);
+          })
       }
     }
-    
+
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {
       text: formElements.text.value,
@@ -71,20 +78,22 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           value={text}
           name="text"
           onChange={handleChange}
+          endAdornment=
+              {<InputAdornment position="end">
+                <Button
+                  className={classes.uploadButton}
+                  variant="contained"
+                  component="label"
+                >
+                  <AddToPhotosOutlinedIcon />
+                  <input
+                    type="file"
+                    multiple
+                    hidden
+                  />
+                </Button>
+              </InputAdornment>}
         />
-        <InputAdornment position="end">
-        <Button
-          variant="contained"
-          component="label"
-        >
-          <AddToPhotosOutlinedIcon />
-          <input
-            type="file"
-            multiple
-            hidden
-          />
-        </Button>
-        </InputAdornment>
       </FormControl>
     </form>
   );
