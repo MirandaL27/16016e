@@ -5,9 +5,10 @@ import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  imageBox: {
-    display: 'flex',
+  root: {
+    display: "flex",
     justifyContent: "flex-end",
+    
   },
 }));
 
@@ -21,18 +22,18 @@ const Messages = (props) => {
 
           return message.senderId === userId ? (
             <>
-              <Box className={classes.imageBox}>
+              <Box className = {classes.root}>
                 {message.attachments && message.attachments.map((url) => (
-                  <ImageEl key={url} url={url} />
+                  <ImageEl key={url} url={url} time={time} />
                 ))}
               </Box>
               {message.text && < SenderBubble key={message.id} text={message.text} time={time} />}
             </>
           ) : (
             <>
-              <Box>
+              <Box className = {classes.root}>
                 {message.attachments && message.attachments.map((url) => (
-                  <ImageEl key={url} url={url} />
+                  <ImageEl key={url} url={url} time = {time}/>
                 ))}
               </Box>
               { message.text && <OtherUserBubble

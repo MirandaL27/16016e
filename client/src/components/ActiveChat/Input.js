@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { FormControl, FilledInput, Button, InputAdornment } from '@material-ui/core';
+import { FormControl, FilledInput, Button, InputAdornment, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
+import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,7 +20,14 @@ const useStyles = makeStyles(() => ({
     boxShadow: "none",
     padding: 'none',
     backgroundColor: 'transparent',
-    color: 'grey'
+    color: 'rgba(209, 217, 230, 1)',
+    '&:hover': {
+      border: "none",
+      boxShadow: "none",
+      padding: 'none',
+      backgroundColor: 'transparent',
+      color: 'grey'
+    }
   }
 }));
 
@@ -76,11 +84,12 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           onChange={handleChange}
           endAdornment=
           {<InputAdornment position="end">
+            <SvgIcon component = {SentimentSatisfiedAltIcon} className = {classes.uploadButton}/>
             <Button
               className={classes.uploadButton}
               variant="contained"
               component="label"
-            >
+            > 
               <AddToPhotosOutlinedIcon />
               <input
                 type="file"
