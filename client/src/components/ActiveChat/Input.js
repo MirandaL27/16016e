@@ -41,26 +41,16 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
       for (let i = 0; i < formElements[1].files.length; i++) {
         console.log(formElements[1].files[i]);
         const imgData = new FormData();
-          imgData.append("file", formElements[1].files[i]);
-          imgData.append("upload_preset", "xax3k85s");
-
-        fetch(urlBase, {
+        imgData.append("file", formElements[1].files[i]);
+        imgData.append("upload_preset", "xax3k85s");
+        const response = await fetch(urlBase, {
           method: "POST",
           body: imgData
-        })
-          .then(response => {
-            return response.text();
-          })
-          .then(response => {
-            console.log(response);
-            urlArray.push(response.url);
-          })
-          .catch(error => {
-            console.log(error);
-          })
+        });
+        const text = await response.text();
+        urlArray.push(JSON.parse(text).secure_url);
       }
     }
-
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {
       text: formElements.text.value,
@@ -68,7 +58,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
       conversationId,
       sender: conversationId ? null : user,
       //add attachments here
-      attachments: urlArray
+      attachments: (urlArray.length > 0 ? urlArray : null)
     };
     await postMessage(reqBody);
     setText('');
@@ -85,20 +75,20 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
           name="text"
           onChange={handleChange}
           endAdornment=
-              {<InputAdornment position="end">
-                <Button
-                  className={classes.uploadButton}
-                  variant="contained"
-                  component="label"
-                >
-                  <AddToPhotosOutlinedIcon />
-                  <input
-                    type="file"
-                    multiple
-                    hidden
-                  />
-                </Button>
-              </InputAdornment>}
+          {<InputAdornment position="end">
+            <Button
+              className={classes.uploadButton}
+              variant="contained"
+              component="label"
+            >
+              <AddToPhotosOutlinedIcon />
+              <input
+                type="file"
+                multiple
+                hidden
+              />
+            </Button>
+          </InputAdornment>}
         />
       </FormControl>
     </form>
