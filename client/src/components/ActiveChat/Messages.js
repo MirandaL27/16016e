@@ -18,17 +18,18 @@ const Messages = (props) => {
         }
         return message.senderId === userId ? (
           <Box>
-            <ImageEl urlList={urlList} time={time} messageExists={message.text ? true : false} />
-            {message.text && < SenderBubble key={message.id} text={message.text} time={time} />}
+            <ImageEl urlList={urlList} time={time} />
+            {message.text && < SenderBubble key={message.id} text={message.text} time={time} imagesExist={message.attachments ? true : false}/>}
           </Box>
         ) : (
           <Box>
-            <ImageEl urlList={urlList} time={time} messageExists={message.text ? true : false} />
+            <ImageEl urlList={urlList} time={time} />
             {message.text && <OtherUserBubble
               key={message.id}
               text={message.text}
               time={time}
               otherUser={otherUser}
+              imagesExist = {message.attachments ? true : false}
             />}
           </Box>
         )

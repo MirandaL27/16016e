@@ -6,10 +6,10 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   imageWrapper: {
-    width: '30%',
+    width: '25%',
     padding: '0px 0px 15px 15px'
   },
   imageBorder: {
@@ -26,16 +26,18 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
+    width: '100%',
+    flexWrap: 'wrap'
   }
 }));
 
 const ImageEl = (props) => {
-  const { urlList, time, messageExists } = props;
+  const { urlList, time } = props;
   const classes = useStyles();
   if (urlList.length > 0) {
     return (
       <Box className={classes.root}>
-        {!messageExists && <Typography className={`${classes.date}`}>{time}</Typography>}
+        <Typography className={`${classes.date}`}>{time}</Typography>
         <Box className = {classes.wrapper}>
           {urlList.map(url => {
             return (
