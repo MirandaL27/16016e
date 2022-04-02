@@ -65,7 +65,6 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
       recipientId: otherUser.id,
       conversationId,
       sender: conversationId ? null : user,
-      //add attachments here
       attachments: (urlArray.length > 0 ? urlArray : null)
     };
     await postMessage(reqBody);
