@@ -3,7 +3,13 @@ import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end'
+  },
   imageWrapper: {
+    width: '30%',
     padding: '0px 0px 15px 15px'
   },
   imageBorder: {
@@ -17,22 +23,32 @@ const useStyles = makeStyles(() => ({
     marginBottom: 5,
   },
   wrapper: {
-    width: '25%',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
   }
 }));
 
 const ImageEl = (props) => {
-  const { url, time } = props;
+  const { urlList, time, messageExists } = props;
   const classes = useStyles();
-  console.log(time);
-  return (
-    <Box className = {classes.wrapper}>
-      <Typography className={`${classes.date}`}>{time}</Typography>
-      <Box className = {classes.imageWrapper}>
-        <Box className={classes.imageBorder} component="img" src={url} alt="image sent as message"></Box>
+  if (urlList.length > 0) {
+    return (
+      <Box className={classes.root}>
+        {!messageExists && <Typography className={`${classes.date}`}>{time}</Typography>}
+        <Box className = {classes.wrapper}>
+          {urlList.map(url => {
+            return (
+              <Box className={classes.imageWrapper}>
+                <Box className={classes.imageBorder} component="img" src={url} alt="image sent as message"></Box>
+              </Box>
+            );
+          })}
+        </Box>
       </Box>
-    </Box>
-  );
+    );
+  }
+  return null;
 };
 
 export default ImageEl;
