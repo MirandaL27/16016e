@@ -41,7 +41,7 @@ const ImageEl = (props) => {
         <Box className = {classes.wrapper}>
           {urlList.map(url => {
             return (
-              <Box className={classes.imageWrapper}>
+              <Box className={classes.imageWrapper} key={url}>
                 <Box className={classes.imageBorder} component="img" src={url} alt="image sent as message"></Box>
               </Box>
             );

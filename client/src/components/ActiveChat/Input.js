@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 import { FormControl, FilledInput, Button, InputAdornment, SvgIcon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
@@ -47,16 +48,13 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     const urlArray = [];
     if (formElements[1].files) {
       for (let i = 0; i < formElements[1].files.length; i++) {
-        console.log(formElements[1].files[i]);
         const imgData = new FormData();
         imgData.append("file", formElements[1].files[i]);
         imgData.append("upload_preset", "xax3k85s");
-        const response = await fetch(urlBase, {
-          method: "POST",
-          body: imgData
-        });
-        const text = await response.text();
-        urlArray.push(JSON.parse(text).secure_url);
+        var instance = axios.create();
+        delete instance.defaults.headers.common["Authorization"];
+        const response = await instance.post(urlBase, imgData);
+        urlArray.push(response.data.secure_url);
       }
     }
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
@@ -70,7 +68,6 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     await postMessage(reqBody);
     setText('');
   };
-  //need to add an element to upload stuff here
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
