@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import { FormControl, FilledInput, Button, InputAdornment, SvgIcon } from '@material-ui/core';
+import { FormControl, FilledInput, Button, InputAdornment, SvgIcon, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
@@ -35,10 +35,18 @@ const useStyles = makeStyles(() => ({
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
-
+  const [upload, setUpload] = useState('');
   const handleChange = (event) => {
     setText(event.target.value);
   };
+  const handleFileUpload = (event) => {
+    let fileList = [];
+    for(let i=0;i<event.target.files.length;i++){
+      fileList.push(event.target.files[0].name);
+    }
+    const uploadText = 'Files to upload: ' + fileList.join(", ");
+    setUpload(uploadText);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -67,9 +75,11 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     };
     await postMessage(reqBody);
     setText('');
+    setUpload('');
   };
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
+      <Typography>{upload}</Typography>
       <FormControl fullWidth hiddenLabel>
         <FilledInput
           classes={{ root: classes.input }}
@@ -91,6 +101,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
                 type="file"
                 multiple
                 hidden
+                onChange={handleFileUpload}
               />
             </Button>
           </InputAdornment>}
