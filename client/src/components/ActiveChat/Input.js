@@ -29,6 +29,9 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'transparent',
       color: 'grey'
     }
+  },
+  greyFont: {
+    color: 'rgba(156, 173, 200, 1)'
   }
 }));
 
@@ -41,10 +44,11 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
   };
   const handleFileUpload = (event) => {
     let fileList = [];
+    let fileWord = (event.target.files.length === 1? 'File' : 'Files');
     for(let i=0;i<event.target.files.length;i++){
-      fileList.push(event.target.files[0].name);
+      fileList.push(event.target.files[i].name);
     }
-    const uploadText = 'Files to upload: ' + fileList.join(", ");
+    const uploadText = `${fileWord} to upload: ${fileList.join(", ")}`;
     setUpload(uploadText);
   }
 
@@ -79,7 +83,7 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
   };
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <Typography>{upload}</Typography>
+      <Typography className = {classes.greyFont}>{upload}</Typography>
       <FormControl fullWidth hiddenLabel>
         <FilledInput
           classes={{ root: classes.input }}

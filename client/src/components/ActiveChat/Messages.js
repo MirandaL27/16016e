@@ -17,21 +17,43 @@ const Messages = (props) => {
           });
         }
         return message.senderId === userId ? (
-          <Box>
-            <ImageEl urlList={urlList} time={time} />
-            {message.text && < SenderBubble key={message.id} text={message.text} time={time} imagesExist={message.attachments ? true : false}/>}
-          </Box>
+          urlList.length > 1 ?
+            (
+              <Box>
+                {message.text && < SenderBubble key={message.id} text={message.text} time={time} imagesExist={message.attachments ? true : false} />}
+                <ImageEl urlList={urlList} time={time} />
+              </Box>
+            ) : (
+              <Box>
+                <ImageEl urlList={urlList} time={time} />
+                {message.text && < SenderBubble key={message.id} text={message.text} time={time} imagesExist={message.attachments ? true : false} />}
+              </Box>
+            )
         ) : (
+          urlList.length > 1 ? 
+          (
           <Box>
-            <ImageEl urlList={urlList} time={time} />
             {message.text && <OtherUserBubble
               key={message.id}
               text={message.text}
               time={time}
               otherUser={otherUser}
-              imagesExist = {message.attachments ? true : false}
+              imagesExist={message.attachments ? true : false}
             />}
+            <ImageEl urlList={urlList} time={time} />
           </Box>
+          ): (
+            <Box>
+              <ImageEl urlList={urlList} time={time} />
+              {message.text && <OtherUserBubble
+                key={message.id}
+                text={message.text}
+                time={time}
+                otherUser={otherUser}
+                imagesExist={message.attachments ? true : false}
+              />}
+            </Box>
+            )
         )
       })}
     </Box>
