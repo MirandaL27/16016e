@@ -6,15 +6,15 @@ import { Input, Header, Messages } from './index';
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
-    flexGrow: 8,
     flexDirection: 'column',
+    width: '66.6%',
+    flex: '1'
   },
   chatContainer: {
     marginLeft: 41,
     marginRight: 41,
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: 1,
     justifyContent: 'space-between',
   },
 }));
