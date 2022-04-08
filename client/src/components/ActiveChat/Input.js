@@ -35,6 +35,8 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+const instance = axios.create();
+
 const Input = ({ otherUser, conversationId, user, postMessage }) => {
   const classes = useStyles();
   const [text, setText] = useState('');
@@ -43,9 +45,9 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     setText(event.target.value);
   };
   const handleFileUpload = (event) => {
-    let fileList = [];
-    let fileWord = (event.target.files.length === 1? 'File' : 'Files');
-    for(let i=0;i<event.target.files.length;i++){
+    const fileList = [];
+    const fileWord = (event.target.files.length === 1 ? 'File' : 'Files');
+    for (let i = 0; i <event.target.files.length; i++) {
       fileList.push(event.target.files[i].name);
     }
     const uploadText = `${fileWord} to upload: ${fileList.join(", ")}`;
@@ -59,15 +61,18 @@ const Input = ({ otherUser, conversationId, user, postMessage }) => {
     const urlBase = "https://api.cloudinary.com/v1_1/dhtthnneo/image/upload";
     const urlArray = [];
     if (formElements[1].files) {
+      const promiseArr = [];
       for (let i = 0; i < formElements[1].files.length; i++) {
         const imgData = new FormData();
         imgData.append("file", formElements[1].files[i]);
         imgData.append("upload_preset", "xax3k85s");
-        var instance = axios.create();
-        delete instance.defaults.headers.common["Authorization"];
-        const response = await instance.post(urlBase, imgData);
-        urlArray.push(response.data.secure_url);
+        const response = instance.post(urlBase, imgData);
+        promiseArr.push(response);
       }
+      const responsesArr = await Promise.all(promiseArr);
+      responsesArr.forEach(response => {
+        urlArray.push(response.data.secure_url);
+      })
     }
     // add sender user info if posting to a brand new convo, so that the other user will have access to username, profile pic, etc.
     const reqBody = {

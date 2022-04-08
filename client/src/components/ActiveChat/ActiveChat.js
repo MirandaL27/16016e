@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => ({
     marginRight: 41,
     display: 'flex',
     flexDirection: 'column',
-    //flexGrow: 1,
     justifyContent: 'space-between',
   },
 }));
